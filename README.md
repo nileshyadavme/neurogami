@@ -8,15 +8,19 @@ This compiler project is designed to translate C++ source code into executable m
 
 ## Project Status
 
-### Compiler Stages
-- [x] Lexical Analysis (Tokenization)
-- [ ] Syntax Analysis (Parsing)
-- [ ] Semantic Analysis
-- [ ] Intermediate Code Generation
-- [ ] Code Optimization
-- [ ] Code Generation
-- [ ] Symbol Table Management
-- [ ] Error Handling
+## Stages of Development
+
+Here’s a checklist of the major stages in building the **Nurogami** compiler:
+
+| Stage                               | Description                                           | Completed |
+|-------------------------------------|-------------------------------------------------------|-----------|
+| **Lexical Analysis** (Lexer)        | Scans the source code and breaks it down into tokens. | ✅         |
+| **Syntax Analysis** (Parser)        | Builds an abstract syntax tree (AST) from tokens.     | ❌         |
+| **Semantic Analysis**               | Ensures the program is semantically correct.          | ❌         |
+| **Intermediate Code Generation**    | Translates the AST into an intermediate representation. | ❌         |
+| **Code Optimization**               | Applies optimizations to the intermediate code.      | ❌         |
+| **Code Generation**                 | Converts the intermediate code to machine code.       | ❌         |
+| **Symbol Table Management**         | Manages identifiers and their types during the compilation. | ❌         |
 
 ### Current Features
 - Basic tokenization of C++ syntax

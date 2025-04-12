@@ -1,7 +1,17 @@
+// ------------------------------------------
+// 🧑‍💻 Author      : Nilesh Kumar Yadav
+// 🕒 Created At  : 2025-04-13 00:25
+// 📄 File        : compiler.cpp
+// 📝 Description : compiler.h implementation
+// ------------------------------------------
+
+
+
 #include "compiler.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <sstream>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -43,16 +53,20 @@ void printBanner() {
 }
 
 // Read a .gami file and print its content to the console - (for debug only) 
-void readGamiFile(const std::string& filename) {
+std::string readGamiFile(const std::string& filename) {
     std::ifstream file(filename);
+    std::string sourceCode;
     if (file) {
-        std::string line;
-        while (std::getline(file, line)) {
-            std::cout << line << std::endl;
-        }
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        sourceCode = buffer.str();
+
+        // DEBUG
+        std::cout<<sourceCode<<std::endl;
     } else {
         std::cout << "\033[1;31mError: Unable to open file '" << filename << "'.\033[0m\n";
     }
+    return sourceCode;
 }
 
 // Main loop for the compiler's functionality
@@ -60,11 +74,11 @@ void startCompiler() {
     std::string input;
 
     while (true) {
-        std::cout << "Nurogami » ";
+        std::cout << "\033[0;32mNurogami » \033[0m";
         std::getline(std::cin, input);
 
         if (input.empty()) continue;
-        
+
         else if (input == "help") {
             std::cout << "Welcome to Nurogami Compiler!\n";
             std::cout << "Here are some commands you can use:\n";
@@ -74,7 +88,10 @@ void startCompiler() {
             std::cout << "Type the name of a file (with .gami extension) to read its content.\n";
         }
         
-        
+        else if(input == "clear")
+        {
+            system("clear");
+        }
         else if (input == "exit") {
             std::cout << "Goodbye, compiler wizard. 🧙‍♂️\n";
             break;
@@ -82,7 +99,7 @@ void startCompiler() {
             
             if (fileExists(input) && input.substr(input.find_last_of(".") + 1) == "gami") {
                 std::cout << "Reading .gami file: " << input << std::endl;
-                readGamiFile(input);
+                std::string sourceCode = readGamiFile(input); // debugging
             } else {
                 std::cout << "\033[1;31mError: File '" << input << "' not found or not a .gami file.\033[0m\n";
             }

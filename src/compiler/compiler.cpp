@@ -8,38 +8,23 @@
 
 
 #include "compiler.h"
+#include "../lexer/lexer.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <sstream>
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
-
 // Check if thee file exists
-bool fileExists(const std::string& filename) {
+bool Nurogami::core::fileExists(const std::string& filename) {
     std::ifstream file(filename);
     return file.good();  // File exists if it opens successfully
 }
 
-// Enable color support on Windows -- deal with this later ----
-#ifdef _WIN32
-void enableColor() {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleMode(hConsole, ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-}
-#endif
-
 // print banner
-void printBanner() {
+void Nurogami::core::printBanner() {
     const std::string BLUE = "\033[1;34m";
     const std::string NC = "\033[0m";
     const std::string PROJECT_NAME = "Nurogami";
-
-#ifdef _WIN32
-    std::cout << "🚀 Running " << PROJECT_NAME << "..." << std::endl;
-#else
     std::cout << BLUE << "🚀 Running " << PROJECT_NAME << "..." << NC << std::endl;
     std::cout << R"(
           ,    ,
@@ -49,11 +34,10 @@ void printBanner() {
          \      /           
           `.__.'
     )" << "\n";
-#endif
 }
 
 // Read a .gami file and print its content to the console - (for debug only) 
-std::string readGamiFile(const std::string& filename) {
+std::string Nurogami::core::readGamiFile(const std::string& filename) {
     std::ifstream file(filename);
     std::string sourceCode;
     if (file) {
@@ -70,7 +54,7 @@ std::string readGamiFile(const std::string& filename) {
 }
 
 // Main loop for the compiler's functionality
-void startCompiler() {
+void Nurogami::core::startCompiler() {
     std::string input;
 
     while (true) {
@@ -100,6 +84,9 @@ void startCompiler() {
             if (fileExists(input) && input.substr(input.find_last_of(".") + 1) == "gami") {
                 std::cout << "Reading .gami file: " << input << std::endl;
                 std::string sourceCode = readGamiFile(input); // debugging
+                
+                // objexct of lexer
+                Nurogami::Lexer lexer(sourceCode);
             } else {
                 std::cout << "\033[1;31mError: File '" << input << "' not found or not a .gami file.\033[0m\n";
             }

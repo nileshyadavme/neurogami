@@ -15,8 +15,8 @@ int main(int argc, char *argv[]) {
 #endif
 
     // Print the banner and start the compiler
-    printBanner();
-    startCompiler();
+    Nurogami::core::printBanner();
+    Nurogami::core::startCompiler();
 
     return 0;
 }

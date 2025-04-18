@@ -75,13 +75,16 @@ void Nurogami::core::startCompiler()
     else if (input == "help")
     {
       std::cout << "Welcome to Nurogami Compiler!\n";
+      std::cout << "\n";
       std::cout << "Here are some commands you can use:\n";
+      std::cout << "\n";
       std::cout << ":exit - Exit the compiler.\n";
+      std::cout << "\n";
       std::cout << ":run <filename> - Run a previously compiled program.\n";
-      std::cout << "<filename>.gami - Read and display the contents of a .gami "
-                   "file.\n";
-      std::cout << "Type the name of a file (with .gami extension) to read its "
-                   "content.\n";
+      std::cout << "\n";
+      std::cout << "<filename>.gami - Read and display the contents of a .gami file.\n";
+      std::cout << "\n";
+      std::cout << "Type the name of a file (with .gami extension) to read its content.\n";
     }
 
     else if (input == "clear")

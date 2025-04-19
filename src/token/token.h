@@ -20,7 +20,7 @@ enum TokenType
     SEMICOLON,
     LEFTPAREN,
     RIGHTPAREN,
-
+    KEYWORD,
     ENDOFFILE
 };
 
@@ -31,4 +31,4 @@ struct Token
     std::string value;
 };
 
-#endif TOKEN_H
+#endif

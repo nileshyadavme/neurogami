@@ -20,4 +20,4 @@ public:
 
 }
 
-#endif ERROR_H
+#endif

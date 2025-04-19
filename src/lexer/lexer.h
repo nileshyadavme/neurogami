@@ -16,6 +16,7 @@
 #include "../error/error.h"
 #include <sstream>
 #include <cctype>
+#include <unordered_set>
 
 namespace nurogami
 {
@@ -59,11 +60,18 @@ namespace nurogami
         // bool identifier(); // identifiers and keywords
 
         // differnt tokenizers
-        Token *tokenizeID();
+        Token *tokenizeID_KEYWORD();
         Token *tokenizeINT();
         Token *tokenizeSpecial(enum TokenType type);
+
+        // KEYWORD set
+        std::unordered_set<std::string> KEYWORDS = {
+            "return",
+            "display"
+        };
+
     };
 
 } // namespace Nurogami
 
-#endif // LEXER_H
+#endif

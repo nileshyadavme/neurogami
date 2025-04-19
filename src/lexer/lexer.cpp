@@ -4,7 +4,6 @@
 // 📄 File        : lexer.cpp
 // 📝 Description : lexer implementation
 // ------------------------------------------
-#pragma once
 
 #include "lexer.h"
 
@@ -59,7 +58,7 @@ std::vector<Token *> nurogami::Lexer::Tokenize()
     skipWS();
     if (isalpha(current) || current == '_')
     {
-      tokens.push_back(tokenizeID());
+      tokens.push_back(tokenizeID_KEYWORD());
       continue;
     }
     else if (isdigit(current))
@@ -101,7 +100,7 @@ std::vector<Token *> nurogami::Lexer::Tokenize()
   differnt tokenizers
 */
 
-Token *nurogami::Lexer::tokenizeID()
+Token *nurogami::Lexer::tokenizeID_KEYWORD()
 {
   std::stringstream buffer;
   buffer << current;
@@ -113,7 +112,7 @@ Token *nurogami::Lexer::tokenizeID()
     advance();
   }
   Token *newToken = new Token();
-  newToken->type = ID;
+  newToken->type = ((nurogami::Lexer::KEYWORDS.find(buffer.str()) == nurogami::Lexer::KEYWORDS.end()) ? ID : KEYWORD);
   newToken->value = buffer.str();
   return newToken;
 }
@@ -166,6 +165,8 @@ std::string nurogami::Lexer::typeToString(enum TokenType type)
       return "ENDOFFILE";
     case TokenType::RETURN:
       return "RETURN";
+    case TokenType::KEYWORD:
+      return "KEYWORD";
     default:
       return "UNKNOWN";
     }

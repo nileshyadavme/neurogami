@@ -5,3 +5,15 @@
 // 📝 Description : all parser memebers
 // ------------------------------------------
 
+#ifndef PARSER_H
+#define PARSHER_H
+
+namespace neurogami 
+{
+    class parser
+    {
+
+    };
+}
+
+#endif

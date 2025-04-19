@@ -15,7 +15,7 @@ Here’s a checklist of the major stages in building the **Nurogami** compiler:
 | Stage                               | Description                                           | Completed |
 |-------------------------------------|-------------------------------------------------------|-----------|
 | **Lexical Analysis** (Lexer)        | Scans the source code and breaks it down into tokens. | ✅         |
-| **Syntax Analysis** (Parser)        | Builds an abstract syntax tree (AST) from tokens.     | ❌         |
+| **Syntax Analysis** (Parser)        | Builds an abstract syntax tree (AST) from tokens.     | 🚧         |
 | **Semantic Analysis**               | Ensures the program is semantically correct.          | ❌         |
 | **Intermediate Code Generation**    | Translates the AST into an intermediate representation. | ❌         |
 | **Code Optimization**               | Applies optimizations to the intermediate code.      | ❌         |
